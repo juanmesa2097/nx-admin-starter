@@ -1,29 +1,30 @@
 import { Injectable } from '@nestjs/common'
 import { RoleCreateInput, RoleUpdateInput } from '@nx-admin-starter/api-interfaces'
-import { PrismaClient, Role } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { PrismaService } from '@nx-admin-starter/api/common'
+import { Role } from '@prisma/client'
 
 @Injectable()
 export class ApiRolesService {
+  constructor(private prisma: PrismaService) {}
+
   public getAll(): Promise<Role[]> {
-    return prisma.role.findMany()
+    return this.prisma.role.findMany()
   }
 
   public create(role: RoleCreateInput): Promise<Role> {
-    return prisma.role.create({
+    return this.prisma.role.create({
       data: role,
     })
   }
 
   public update(id: Role['id'], role: RoleUpdateInput): Promise<Role> {
-    return prisma.role.update({
+    return this.prisma.role.update({
       data: role,
       where: { id },
     })
   }
 
   public delete(id: Role['id']): Promise<Role> {
-    return prisma.role.delete({ where: { id } })
+    return this.prisma.role.delete({ where: { id } })
   }
 }

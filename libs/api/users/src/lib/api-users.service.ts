@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { UserCreateInput, UserUpdateInput } from '@nx-admin-starter/api-interfaces'
-import { PrismaClient, Profile, User } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { PrismaService } from '@nx-admin-starter/api/common'
+import { Profile, User } from '@prisma/client'
 
 @Injectable()
 export class ApiUsersService {
-  public getAll(): Promise<User[]> {
-    return prisma.user.findMany({
+  constructor(private prisma: PrismaService) {}
+
+  getAll(): Promise<User[]> {
+    return this.prisma.user.findMany({
       include: {
         profile: true,
       },
@@ -17,14 +18,16 @@ export class ApiUsersService {
     })
   }
 
-  public getProfile(userId: string): Promise<Profile | null> {
-    return prisma.profile.findFirst({
+  async getProfile(userId: string): Promise<Profile | null> {
+    const userProfile = await this.prisma.profile.findFirst({
       where: { userId },
     })
+
+    return userProfile
   }
 
-  public create(user: UserCreateInput): Promise<User> {
-    return prisma.user.create({
+  create(user: UserCreateInput): Promise<User> {
+    return this.prisma.user.create({
       data: user,
       include: {
         profile: true,
@@ -32,8 +35,8 @@ export class ApiUsersService {
     })
   }
 
-  public update(id: User['id'], user: UserUpdateInput): Promise<User> {
-    return prisma.user.update({
+  update(id: User['id'], user: UserUpdateInput): Promise<User> {
+    return this.prisma.user.update({
       data: user,
       include: {
         profile: true,
@@ -42,9 +45,7 @@ export class ApiUsersService {
     })
   }
 
-  public delete(id: User['id']): Promise<User> {
-    return prisma.user.delete({
-      where: { id },
-    })
+  delete(id: User['id']): Promise<User> {
+    return this.prisma.user.delete({ where: { id } })
   }
 }
