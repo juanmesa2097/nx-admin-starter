@@ -31,6 +31,9 @@
     "api": {
       "tags": ["type:app", "scope:api"]
     },
+    "api-common": {
+      "tags": ["type:lib", "scope:api"]
+    },
     "api-interfaces": {
       "tags": ["type:lib", "scope:shared"]
     },
