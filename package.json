@@ -13,7 +13,7 @@
   },
   "private": true,
   "lint-staged": {
-    "*.{js,json,md,ts}": "eslint --fix",
+    "*.{js,ts,md}": "eslint --fix",
     "*.{css,scss}": "stylelint --fix",
     "*": "prettier -w -u"
   },
