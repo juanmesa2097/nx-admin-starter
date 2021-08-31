@@ -34,6 +34,9 @@
     "api-interfaces": {
       "tags": ["type:lib", "scope:shared"]
     },
+    "api-roles": {
+      "tags": ["type:lib", "scope:api"]
+    },
     "api-users": {
       "tags": ["type:lib", "scope:api"]
     },

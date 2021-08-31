@@ -138,13 +138,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
 const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const roles_1 = __webpack_require__(/*! @nx-admin-starter/api/roles */ "./libs/api/roles/src/index.ts");
+const users_1 = __webpack_require__(/*! @nx-admin-starter/api/users */ "./libs/api/users/src/index.ts");
 const app_controller_1 = __webpack_require__(/*! ./app.controller */ "./apps/api/src/app/app.controller.ts");
 const app_service_1 = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
 let AppModule = class AppModule {
 };
 AppModule = tslib_1.__decorate([
     common_1.Module({
-        imports: [],
+        imports: [users_1.ApiUsersModule, roles_1.ApiRolesModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
@@ -226,6 +228,7 @@ bootstrap();
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
 tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-interfaces */ "./libs/api-interfaces/src/lib/api-interfaces.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/user.types */ "./libs/api-interfaces/src/lib/user.types.ts"), exports);
 
 
 /***/ }),
@@ -240,6 +243,292 @@ tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-interfaces */ "./libs/api
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+
+
+/***/ }),
+
+/***/ "./libs/api-interfaces/src/lib/user.types.ts":
+/*!***************************************************!*\
+  !*** ./libs/api-interfaces/src/lib/user.types.ts ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+
+
+/***/ }),
+
+/***/ "./libs/api/roles/src/index.ts":
+/*!*************************************!*\
+  !*** ./libs/api/roles/src/index.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-roles.controller */ "./libs/api/roles/src/lib/api-roles.controller.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-roles.service */ "./libs/api/roles/src/lib/api-roles.service.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-roles.module */ "./libs/api/roles/src/lib/api-roles.module.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./libs/api/roles/src/lib/api-roles.controller.ts":
+/*!********************************************************!*\
+  !*** ./libs/api/roles/src/lib/api-roles.controller.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiRolesController = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const api_roles_service_1 = __webpack_require__(/*! ./api-roles.service */ "./libs/api/roles/src/lib/api-roles.service.ts");
+let ApiRolesController = class ApiRolesController {
+    constructor(apiRolesService) {
+        this.apiRolesService = apiRolesService;
+    }
+    getAll() {
+        return this.apiRolesService.getAll();
+    }
+};
+tslib_1.__decorate([
+    common_1.Get(),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", void 0)
+], ApiRolesController.prototype, "getAll", null);
+ApiRolesController = tslib_1.__decorate([
+    common_1.Controller('roles'),
+    tslib_1.__metadata("design:paramtypes", [typeof (_a = typeof api_roles_service_1.ApiRolesService !== "undefined" && api_roles_service_1.ApiRolesService) === "function" ? _a : Object])
+], ApiRolesController);
+exports.ApiRolesController = ApiRolesController;
+
+
+/***/ }),
+
+/***/ "./libs/api/roles/src/lib/api-roles.module.ts":
+/*!****************************************************!*\
+  !*** ./libs/api/roles/src/lib/api-roles.module.ts ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiRolesModule = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const api_roles_controller_1 = __webpack_require__(/*! ./api-roles.controller */ "./libs/api/roles/src/lib/api-roles.controller.ts");
+const api_roles_service_1 = __webpack_require__(/*! ./api-roles.service */ "./libs/api/roles/src/lib/api-roles.service.ts");
+let ApiRolesModule = class ApiRolesModule {
+};
+ApiRolesModule = tslib_1.__decorate([
+    common_1.Module({
+        controllers: [api_roles_controller_1.ApiRolesController],
+        providers: [api_roles_service_1.ApiRolesService],
+        exports: [api_roles_service_1.ApiRolesService],
+    })
+], ApiRolesModule);
+exports.ApiRolesModule = ApiRolesModule;
+
+
+/***/ }),
+
+/***/ "./libs/api/roles/src/lib/api-roles.service.ts":
+/*!*****************************************************!*\
+  !*** ./libs/api/roles/src/lib/api-roles.service.ts ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiRolesService = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const client_1 = __webpack_require__(/*! @prisma/client */ "@prisma/client");
+const prisma = new client_1.PrismaClient();
+let ApiRolesService = class ApiRolesService {
+    getAll() {
+        return prisma.role.findMany();
+    }
+};
+ApiRolesService = tslib_1.__decorate([
+    common_1.Injectable()
+], ApiRolesService);
+exports.ApiRolesService = ApiRolesService;
+
+
+/***/ }),
+
+/***/ "./libs/api/users/src/index.ts":
+/*!*************************************!*\
+  !*** ./libs/api/users/src/index.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-users.controller */ "./libs/api/users/src/lib/api-users.controller.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-users.service */ "./libs/api/users/src/lib/api-users.service.ts"), exports);
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/api-users.module */ "./libs/api/users/src/lib/api-users.module.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./libs/api/users/src/lib/api-users.controller.ts":
+/*!********************************************************!*\
+  !*** ./libs/api/users/src/lib/api-users.controller.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _a, _b, _c, _d, _e, _f, _g;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiUsersController = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const api_interfaces_1 = __webpack_require__(/*! @nx-admin-starter/api-interfaces */ "./libs/api-interfaces/src/index.ts");
+const api_users_service_1 = __webpack_require__(/*! ./api-users.service */ "./libs/api/users/src/lib/api-users.service.ts");
+let ApiUsersController = class ApiUsersController {
+    constructor(apiUsersService) {
+        this.apiUsersService = apiUsersService;
+    }
+    getAll() {
+        return this.apiUsersService.getAll();
+    }
+    create(user) {
+        return this.apiUsersService.create(user);
+    }
+    update(id, user) {
+        return this.apiUsersService.update(id, user);
+    }
+    delete(id) {
+        return this.apiUsersService.delete(id);
+    }
+};
+tslib_1.__decorate([
+    common_1.Get(),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", []),
+    tslib_1.__metadata("design:returntype", typeof (_a = typeof Promise !== "undefined" && Promise) === "function" ? _a : Object)
+], ApiUsersController.prototype, "getAll", null);
+tslib_1.__decorate([
+    common_1.Post(),
+    tslib_1.__param(0, common_1.Body()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [typeof (_b = typeof api_interfaces_1.UserCreateInput !== "undefined" && api_interfaces_1.UserCreateInput) === "function" ? _b : Object]),
+    tslib_1.__metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
+], ApiUsersController.prototype, "create", null);
+tslib_1.__decorate([
+    common_1.Put(':id'),
+    tslib_1.__param(0, common_1.Param()),
+    tslib_1.__param(1, common_1.Body()),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object, typeof (_d = typeof api_interfaces_1.UserCreateInput !== "undefined" && api_interfaces_1.UserCreateInput) === "function" ? _d : Object]),
+    tslib_1.__metadata("design:returntype", typeof (_e = typeof Promise !== "undefined" && Promise) === "function" ? _e : Object)
+], ApiUsersController.prototype, "update", null);
+tslib_1.__decorate([
+    common_1.Delete(':id'),
+    tslib_1.__param(0, common_1.Param('id')),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [Object]),
+    tslib_1.__metadata("design:returntype", typeof (_f = typeof Promise !== "undefined" && Promise) === "function" ? _f : Object)
+], ApiUsersController.prototype, "delete", null);
+ApiUsersController = tslib_1.__decorate([
+    common_1.Controller('users'),
+    tslib_1.__metadata("design:paramtypes", [typeof (_g = typeof api_users_service_1.ApiUsersService !== "undefined" && api_users_service_1.ApiUsersService) === "function" ? _g : Object])
+], ApiUsersController);
+exports.ApiUsersController = ApiUsersController;
+
+
+/***/ }),
+
+/***/ "./libs/api/users/src/lib/api-users.module.ts":
+/*!****************************************************!*\
+  !*** ./libs/api/users/src/lib/api-users.module.ts ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiUsersModule = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const api_users_controller_1 = __webpack_require__(/*! ./api-users.controller */ "./libs/api/users/src/lib/api-users.controller.ts");
+const api_users_service_1 = __webpack_require__(/*! ./api-users.service */ "./libs/api/users/src/lib/api-users.service.ts");
+let ApiUsersModule = class ApiUsersModule {
+};
+ApiUsersModule = tslib_1.__decorate([
+    common_1.Module({
+        controllers: [api_users_controller_1.ApiUsersController],
+        providers: [api_users_service_1.ApiUsersService],
+        exports: [api_users_service_1.ApiUsersService],
+    })
+], ApiUsersModule);
+exports.ApiUsersModule = ApiUsersModule;
+
+
+/***/ }),
+
+/***/ "./libs/api/users/src/lib/api-users.service.ts":
+/*!*****************************************************!*\
+  !*** ./libs/api/users/src/lib/api-users.service.ts ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ApiUsersService = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const client_1 = __webpack_require__(/*! @prisma/client */ "@prisma/client");
+const prisma = new client_1.PrismaClient();
+let ApiUsersService = class ApiUsersService {
+    getAll() {
+        return prisma.user.findMany();
+    }
+    create(user) {
+        return prisma.user.create({
+            data: user,
+        });
+    }
+    update(id, user) {
+        return prisma.user.update({
+            data: user,
+            where: { id },
+        });
+    }
+    delete(id) {
+        return prisma.user.delete({ where: { id } });
+    }
+};
+ApiUsersService = tslib_1.__decorate([
+    common_1.Injectable()
+], ApiUsersService);
+exports.ApiUsersService = ApiUsersService;
 
 
 /***/ }),
@@ -275,6 +564,17 @@ module.exports = require("@nestjs/common");
 /***/ (function(module, exports) {
 
 module.exports = require("@nestjs/core");
+
+/***/ }),
+
+/***/ "@prisma/client":
+/*!*********************************!*\
+  !*** external "@prisma/client" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@prisma/client");
 
 /***/ }),
 

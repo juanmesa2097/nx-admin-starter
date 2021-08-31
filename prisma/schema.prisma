@@ -12,7 +12,7 @@ generator client {
 }
 
 model User {
-  id               String   @id @default(cuid())
+  id               String   @id @default(uuid())
   username         String   @unique @db.VarChar(25)
   password         String
   email            String   @unique @db.VarChar(60)
@@ -35,11 +35,10 @@ model Profile {
   updatedAt   DateTime @updatedAt
   userId      String
   user        User     @relation(fields: [userId], references: [id])
-
 }
 
 model Role {
-  id     String @id @default(cuid())
+  id     String @id @default(uuid())
   name   String @unique @default("USER") @db.VarChar(25)
   status String @default("ACTIVE") @db.VarChar(10)
   userId String

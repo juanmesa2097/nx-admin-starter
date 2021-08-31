@@ -64,6 +64,27 @@
         }
       }
     },
+    "api-roles": {
+      "root": "libs/api/roles",
+      "sourceRoot": "libs/api/roles/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/roles/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/roles"],
+          "options": {
+            "jestConfig": "libs/api/roles/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-users": {
       "root": "libs/api/users",
       "sourceRoot": "libs/api/users/src",
@@ -112,10 +133,7 @@
             "polyfills": "apps/web-client/src/polyfills.ts",
             "tsConfig": "apps/web-client/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/web-client/src/favicon.ico",
-              "apps/web-client/src/assets"
-            ],
+            "assets": ["apps/web-client/src/favicon.ico", "apps/web-client/src/assets"],
             "styles": ["apps/web-client/src/styles.scss"],
             "scripts": []
           },
@@ -176,10 +194,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/web-client/src/**/*.ts",
-              "apps/web-client/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/web-client/src/**/*.ts", "apps/web-client/src/**/*.html"]
           }
         },
         "test": {
