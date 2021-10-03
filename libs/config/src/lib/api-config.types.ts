@@ -1,10 +1,10 @@
-export type Config = {
-  app: AppConfig;
+export type ApiConfig = {
+  nest: NestConfig;
   graphql: GraphqlConfig;
   security: SecurityConfig;
 };
 
-export type AppConfig = {
+export type NestConfig = {
   port: number;
   cors: CorsConfig;
 };
