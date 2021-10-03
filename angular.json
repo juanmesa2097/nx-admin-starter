@@ -82,6 +82,38 @@
         }
       }
     },
+    "api-modules-user": {
+      "root": "libs/api/modules/user",
+      "sourceRoot": "libs/api/modules/user/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/modules/user",
+            "tsConfig": "libs/api/modules/user/tsconfig.lib.json",
+            "packageJson": "libs/api/modules/user/package.json",
+            "main": "libs/api/modules/user/src/index.ts",
+            "assets": ["libs/api/modules/user/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/modules/user/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/modules/user"],
+          "options": {
+            "jestConfig": "libs/api/modules/user/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-providers": {
       "root": "libs/api/providers",
       "sourceRoot": "libs/api/providers/src",
@@ -102,6 +134,38 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/api/providers/**/*.ts"]
+          }
+        }
+      }
+    },
+    "api-recipes": {
+      "root": "libs/api/recipes",
+      "sourceRoot": "libs/api/recipes/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/recipes",
+            "tsConfig": "libs/api/recipes/tsconfig.lib.json",
+            "packageJson": "libs/api/recipes/package.json",
+            "main": "libs/api/recipes/src/index.ts",
+            "assets": ["libs/api/recipes/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/recipes/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/recipes"],
+          "options": {
+            "jestConfig": "libs/api/recipes/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

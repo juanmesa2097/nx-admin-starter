@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigProviderModule } from '@nx-admin-starter/api/providers';
+import { UserModule } from '@nx-admin-starter/api/modules/user';
+import { ConfigProviderModule, GqlProviderModule } from '@nx-admin-starter/api/providers';
+import { PrismaModule, PubSubModule } from '@nx-admin-starter/api/recipes';
 @Module({
-  imports: [ConfigProviderModule],
+  imports: [ConfigProviderModule, GqlProviderModule, PrismaModule, PubSubModule, UserModule],
   controllers: [],
   providers: [],
 })

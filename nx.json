@@ -34,7 +34,13 @@
     "api-config": {
       "tags": ["type:lib", "scope:api"]
     },
+    "api-modules-user": {
+      "tags": ["type:lib", "scope:api"]
+    },
     "api-providers": {
+      "tags": ["type:lib", "scope:api"]
+    },
+    "api-recipes": {
       "tags": ["type:lib", "scope:api"]
     },
     "web-client": {

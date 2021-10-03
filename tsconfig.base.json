@@ -3,8 +3,6 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
-    // TODO: https://github.com/nrwl/nx/issues/3106
-    // "composite": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -17,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@generated": ["./@generated/*"],
       "@nx-admin-starter/api/config": ["libs/api/config/src/index.ts"],
+      "@nx-admin-starter/api/modules/user": ["libs/api/modules/user/src/index.ts"],
       "@nx-admin-starter/api/providers": ["libs/api/providers/src/index.ts"],
-      "@nx-admin-starter/generated": ["@generated/*"]
+      "@nx-admin-starter/api/recipes": ["libs/api/recipes/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
