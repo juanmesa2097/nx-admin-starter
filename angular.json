@@ -369,6 +369,47 @@
           }
         }
       }
+    },
+    "web-client-modules-user": {
+      "projectType": "library",
+      "root": "libs/web-client/modules/user",
+      "sourceRoot": "libs/web-client/modules/user/src",
+      "prefix": "nas",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/web-client/modules/user"],
+          "options": {
+            "project": "libs/web-client/modules/user/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/web-client/modules/user/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/web-client/modules/user/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web-client/modules/user"],
+          "options": {
+            "jestConfig": "libs/web-client/modules/user/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web-client/modules/user/src/**/*.ts",
+              "libs/web-client/modules/user/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -58,6 +58,9 @@
     "web-client-e2e": {
       "tags": [],
       "implicitDependencies": ["web-client"]
+    },
+    "web-client-modules-user": {
+      "tags": ["type:lib", "scope:web-client"]
     }
   }
 }
