@@ -3,6 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "sourceMap": true,
+    // TODO: https://github.com/nrwl/nx/issues/3106
+    // "composite": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
