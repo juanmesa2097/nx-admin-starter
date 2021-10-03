@@ -9,7 +9,7 @@
     "start:web-client": "nx serve web-client",
     "start:api": "nx serve api",
     "build": "nx build",
-    "test": "nx test",
+    "test": "nx run-many --all --target=test",
     "lint": "nx run-many --all --target=lint",
     "lint:style": "stylelint {apps,libs}/**/*.{css,scss}",
     "prisma:generate": "prisma generate",
