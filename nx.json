@@ -31,6 +31,9 @@
     "api": {
       "tags": ["type:app", "scope:api"]
     },
+    "config": {
+      "tags": ["type:lib", "scope:global"]
+    },
     "web-client": {
       "tags": ["type:app", "scope:client"]
     },
