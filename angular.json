@@ -82,6 +82,38 @@
         }
       }
     },
+    "api-guards": {
+      "root": "libs/api/guards",
+      "sourceRoot": "libs/api/guards/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/guards",
+            "tsConfig": "libs/api/guards/tsconfig.lib.json",
+            "packageJson": "libs/api/guards/package.json",
+            "main": "libs/api/guards/src/index.ts",
+            "assets": ["libs/api/guards/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/guards/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/guards"],
+          "options": {
+            "jestConfig": "libs/api/guards/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-modules-user": {
       "root": "libs/api/modules/user",
       "sourceRoot": "libs/api/modules/user/src",

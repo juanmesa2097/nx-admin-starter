@@ -34,6 +34,9 @@
     "api-config": {
       "tags": ["type:lib", "scope:api"]
     },
+    "api-guards": {
+      "tags": ["type:lib", "scope:api"]
+    },
     "api-modules-user": {
       "tags": ["type:lib", "scope:api"]
     },
