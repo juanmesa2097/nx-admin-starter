@@ -31,18 +31,6 @@
     "api": {
       "tags": ["type:app", "scope:api"]
     },
-    "api-common": {
-      "tags": ["type:lib", "scope:api"]
-    },
-    "api-interfaces": {
-      "tags": ["type:lib", "scope:shared"]
-    },
-    "api-roles": {
-      "tags": ["type:lib", "scope:api"]
-    },
-    "api-users": {
-      "tags": ["type:lib", "scope:api"]
-    },
     "web-client": {
       "tags": ["type:app", "scope:client"]
     },

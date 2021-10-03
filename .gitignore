@@ -5,7 +5,7 @@
 /dist
 /tmp
 /out-tsc
-/src/@generated/*
+/@generated/*
 
 # dependencies
 /node_modules

@@ -17,7 +17,9 @@
     "migrate:deploy": "prisma migrate deploy",
     "prisma:seed": "prisma db seed",
     "docker:compose:up": "docker-compose up -d",
-    "docker:compose:down": "docker-compose down --remove-orphans --volumes"
+    "sudo:docker:compose:up": "sudo docker-compose up -d",
+    "docker:compose:down": "docker-compose down --remove-orphans --volumes",
+    "sudo:docker:compose:down": "sudo docker-compose down --remove-orphans --volumes"
   },
   "private": true,
   "prisma": {

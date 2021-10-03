@@ -15,10 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-admin-starter/api-interfaces": ["libs/api-interfaces/src/index.ts"],
-      "@nx-admin-starter/api/common": ["libs/api/common/src/index.ts"],
-      "@nx-admin-starter/api/roles": ["libs/api/roles/src/index.ts"],
-      "@nx-admin-starter/api/users": ["libs/api/users/src/index.ts"]
+      "@nx-admin-starter/generated": ["@generated/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
