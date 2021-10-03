@@ -23,7 +23,8 @@
       "@nx-admin-starter/api/providers": ["libs/api/providers/src/index.ts"],
       "@nx-admin-starter/api/recipes": ["libs/api/recipes/src/index.ts"],
       "@nx-admin-starter/utils": ["libs/utils/src/index.ts"],
-      "@nx-admin-starter/web-client/modules/user": ["libs/web-client/modules/user/src/index.ts"]
+      "@nx-admin-starter/web-client/modules/user": ["libs/web-client/modules/user/src/index.ts"],
+      "@nx-admin-starter/web-client/shell": ["libs/web-client/shell/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

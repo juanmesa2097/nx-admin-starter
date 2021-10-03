@@ -411,6 +411,47 @@
           }
         }
       }
+    },
+    "web-client-shell": {
+      "projectType": "library",
+      "root": "libs/web-client/shell",
+      "sourceRoot": "libs/web-client/shell/src",
+      "prefix": "nx-admin-starter",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/web-client/shell"],
+          "options": {
+            "project": "libs/web-client/shell/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/web-client/shell/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/web-client/shell/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/web-client/shell"],
+          "options": {
+            "jestConfig": "libs/web-client/shell/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/web-client/shell/src/**/*.ts",
+              "libs/web-client/shell/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

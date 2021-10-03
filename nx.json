@@ -61,6 +61,9 @@
     },
     "web-client-modules-user": {
       "tags": ["type:lib", "scope:web-client"]
+    },
+    "web-client-shell": {
+      "tags": ["type:lib", "scope:web-client"]
     }
   }
 }
