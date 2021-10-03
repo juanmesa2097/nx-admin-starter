@@ -114,6 +114,27 @@
         }
       }
     },
+    "api-modules-auth": {
+      "root": "libs/api/modules/auth",
+      "sourceRoot": "libs/api/modules/auth/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/modules/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/modules/auth"],
+          "options": {
+            "jestConfig": "libs/api/modules/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-modules-user": {
       "root": "libs/api/modules/user",
       "sourceRoot": "libs/api/modules/user/src",

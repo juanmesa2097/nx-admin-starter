@@ -37,6 +37,9 @@
     "api-guards": {
       "tags": ["type:lib", "scope:api"]
     },
+    "api-modules-auth": {
+      "tags": ["type:lib", "scope:api"]
+    },
     "api-modules-user": {
       "tags": ["type:lib", "scope:api"]
     },
