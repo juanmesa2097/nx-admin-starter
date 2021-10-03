@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-admin-starter/config": ["libs/config/src/index.ts"],
+      "@nx-admin-starter/api/config": ["libs/api/config/src/index.ts"],
+      "@nx-admin-starter/api/providers": ["libs/api/providers/src/index.ts"],
       "@nx-admin-starter/generated": ["@generated/*"]
     }
   },
