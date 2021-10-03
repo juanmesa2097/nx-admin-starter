@@ -1,12 +1,8 @@
-import { Module } from '@nestjs/common'
-import { ApiRolesModule } from '@nx-admin-starter/api/roles'
-import { ApiUsersModule } from '@nx-admin-starter/api/users'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-
+import { Module } from '@nestjs/common';
+import { ConfigProviderModule } from '@nx-admin-starter/api/providers';
 @Module({
-  imports: [ApiUsersModule, ApiRolesModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [ConfigProviderModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

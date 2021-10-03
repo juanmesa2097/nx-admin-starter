@@ -31,20 +31,14 @@
     "api": {
       "tags": ["type:app", "scope:api"]
     },
-    "api-common": {
+    "api-config": {
       "tags": ["type:lib", "scope:api"]
     },
-    "api-interfaces": {
-      "tags": ["type:lib", "scope:shared"]
-    },
-    "api-roles": {
-      "tags": ["type:lib", "scope:api"]
-    },
-    "api-users": {
+    "api-providers": {
       "tags": ["type:lib", "scope:api"]
     },
     "web-client": {
-      "tags": ["type:app", "scope:client"]
+      "tags": ["type:app", "scope:web-client"]
     },
     "web-client-e2e": {
       "tags": [],

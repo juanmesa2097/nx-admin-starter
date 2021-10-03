@@ -2,45 +2,118 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["microsoftSqlServer", "referentialActions"]
+  provider = "prisma-client-js"
+}
+
+generator nestgraphql {
+  provider                    = "node node_modules/prisma-nestjs-graphql"
+  output                      = "../@generated"
+  noAtomicOperations          = false
+  combineScalarFilters        = false
+  reExport                    = None
+  emitSingle                  = false
+  emitCompiled                = false
+  purgeOutput                 = false
+  fields_Validator_from       = "class-validator"
+  fields_Validator_input      = true
+  fields_Scalars_from         = "graphql-scalars"
+  fields_Scalars_input        = true
+  useInputType_WhereInput_ALL = "WhereInput"
 }
 
 model User {
-  id               String   @id @default(uuid())
-  username         String   @unique @db.VarChar(25)
-  password         String
-  email            String   @unique @db.VarChar(60)
-  emailConfirmed   Boolean  @default(false)
-  twoFactorEnabled Boolean  @default(true)
-  status           String   @default("ACTIVE") @db.VarChar(10)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  profile          Profile?
-  roles            Role[]
+  id String @id @default(uuid())
+
+  /// @HideField()
+  /// @Validator.MinLength(6)
+  password String
+
+  /// @FieldType('Scalars.GraphQLEmailAddress')
+  email String @unique @db.VarChar(60)
+
+  emailConfirmed   Boolean  @default(false) @map("email_confirmed")
+  twoFactorEnabled Boolean  @default(true) @map("two_factor_enabled")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // @HideField({ input: true, output: false })
+  /// @Validator.IsEnum(UserStatus)
+  status UserStatus @default(ACTIVE)
+
+  // @HideField({ input: true, output: false })
+  /// @Validator.IsEnum(Role)
+  role Role @default(USER)
+
+  profile Profile?
+  posts   Post[]
+
+  @@map("user")
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
 }
 
 model Profile {
-  id          Int      @id @default(autoincrement())
-  firstName   String   @db.VarChar(25)
-  middleName  String   @db.VarChar(25)
-  lastName    String   @db.VarChar(25)
-  dateOfBirth DateTime
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id Int @id @default(autoincrement())
+
+  /// @Validator.IsNotEmpty()
+  /// @Validator.MaxLength(40)
+  firstName String @map("first_name") @db.VarChar(40)
+
+  /// @Validator.IsOptional()
+  /// @Validator.MaxLength(40)
+  lastName String? @map("last_name") @db.VarChar(40)
+
+  /// @Validator.IsOptional()
+  /// @Validator.MaxLength(300)
+  bio String? @db.VarChar(300)
+
+  /// @Validator.IsOptional()
+  /// @Validator.IsDate()
+  dateOfBirth DateTime? @map("date_of_birth")
+
+  avatarUrl String?  @map("avatar_url")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("user_detail")
 }
 
-model Role {
-  id     String @id @default(uuid())
-  name   String @unique @default("USER") @db.VarChar(25)
-  status String @default("ACTIVE") @db.VarChar(10)
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+model Post {
+  id Int @id @default(autoincrement())
+
+  /// @Validator.IsNotEmpty()
+  /// @Validator.MaxLength(45)
+  title String @db.VarChar(45)
+
+  /// @Validator.IsNotEmpty()
+  /// @Validator.MaxLength(300)
+  content String @db.Text
+
+  /// @Validator.IsOptional()
+  /// @Validator.IsBoolean()
+  published Boolean @default(false)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String @map("author_id")
+
+  @@map("post")
+}
+
+enum Role {
+  USER
+  ADMIN
 }
