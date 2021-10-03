@@ -272,7 +272,8 @@
             "inlineStyleLanguage": "scss",
             "assets": ["apps/web-client/src/favicon.ico", "apps/web-client/src/assets"],
             "styles": ["apps/web-client/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "preserveSymlinks": true
           },
           "configurations": {
             "production": {
