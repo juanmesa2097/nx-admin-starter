@@ -82,6 +82,59 @@
         }
       }
     },
+    "api-guards": {
+      "root": "libs/api/guards",
+      "sourceRoot": "libs/api/guards/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/api/guards",
+            "tsConfig": "libs/api/guards/tsconfig.lib.json",
+            "packageJson": "libs/api/guards/package.json",
+            "main": "libs/api/guards/src/index.ts",
+            "assets": ["libs/api/guards/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/guards/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/guards"],
+          "options": {
+            "jestConfig": "libs/api/guards/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api-modules-auth": {
+      "root": "libs/api/modules/auth",
+      "sourceRoot": "libs/api/modules/auth/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/modules/auth/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/modules/auth"],
+          "options": {
+            "jestConfig": "libs/api/modules/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "api-modules-user": {
       "root": "libs/api/modules/user",
       "sourceRoot": "libs/api/modules/user/src",
@@ -165,6 +218,37 @@
           "outputs": ["coverage/libs/api/recipes"],
           "options": {
             "jestConfig": "libs/api/recipes/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "root": "libs/utils",
+      "sourceRoot": "libs/utils/src",
+      "projectType": "library",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:tsc",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/utils",
+            "main": "libs/utils/src/index.ts",
+            "tsConfig": "libs/utils/tsconfig.lib.json",
+            "assets": ["libs/utils/*.md"]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/utils/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/utils"],
+          "options": {
+            "jestConfig": "libs/utils/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -2,6 +2,18 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AccessToken {
+  """
+  JWT access token
+  """
+  accessToken: String!
+
+  """
+  JWT refresh token
+  """
+  refreshToken: String!
+}
+
 input BoolFieldUpdateOperationsInput {
   set: Boolean
 }
@@ -81,6 +93,9 @@ input IntFilter {
 }
 
 type Mutation {
+  refreshToken: AccessToken!
+  signIn(data: SignInInput!): AccessToken!
+  signUp(data: SignUpInput!): AccessToken!
   userDelete(where: UserWhereUniqueInput!): User!
   userUpdate(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   userUpdateRole(data: UpdateUserRoleInput!, where: UserWhereUniqueInput!): User!
@@ -405,6 +420,18 @@ enum QueryMode {
 enum Role {
   ADMIN
   USER
+}
+
+input SignInInput {
+  email: EmailAddress!
+  password: String!
+}
+
+input SignUpInput {
+  email: EmailAddress!
+  firstName: String!
+  lastName: String
+  password: String!
 }
 
 enum SortOrder {
