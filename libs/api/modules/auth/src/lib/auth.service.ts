@@ -10,6 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { SecurityConfig } from '@nx-admin-starter/api/config';
 import { CryptService, PrismaService } from '@nx-admin-starter/api/recipes';
+import { Utils } from '@nx-admin-starter/utils';
 import { Prisma } from '@prisma/client';
 import { AccessToken } from './dto/access-token.dto';
 import { SignInInput } from './dto/sign-in.input';
@@ -25,20 +26,21 @@ export class AuthService {
   ) {}
 
   async signUp(data: SignUpInput): Promise<AccessToken> {
-    // const email = TextUtils.normalize({ text: data.email, letterCase: 'lowercase' });
-    // const firstName = TextUtils.normalize({ text: data.firstName, letterCase: 'capitalize' });
-    // const lastName = TextUtils.normalize({ text: data.lastName, letterCase: 'capitalize' });
+    const email = Utils.normalize({ text: data.email, letterCase: 'lowercase' });
+    const firstName = Utils.normalize({ text: data.firstName, letterCase: 'capitalize' });
+    const lastName = Utils.normalize({ text: data.lastName || '', letterCase: 'capitalize' });
+
     const hashedPassword = await this.cryptService.hashPassword(data.password);
 
     try {
       const newUser = await this.prisma.user.create({
         data: {
-          email: data.email,
+          email,
           password: hashedPassword,
           profile: {
             create: {
-              firstName: data.firstName,
-              lastName: data.lastName,
+              firstName,
+              lastName,
             },
           },
         },
@@ -55,9 +57,9 @@ export class AuthService {
   }
 
   async signIn({ email, password }: SignInInput): Promise<AccessToken> {
-    // const normalizedEmail = TextUtils.normalize({ text: email, letterCase: 'lowercase' });
+    const normalizedEmail = Utils.normalize({ text: email, letterCase: 'lowercase' });
 
-    const user = await this.prisma.user.findUnique({ where: { email: email } });
+    const user = await this.prisma.user.findUnique({ where: { email: normalizedEmail } });
     if (!user) {
       throw new NotFoundException(`Email address: ${email} was not found`);
     }

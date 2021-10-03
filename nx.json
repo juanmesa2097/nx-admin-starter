@@ -49,6 +49,9 @@
     "api-recipes": {
       "tags": ["type:lib", "scope:api"]
     },
+    "utils": {
+      "tags": ["type:lib", "scope:global"]
+    },
     "web-client": {
       "tags": ["type:app", "scope:web-client"]
     },
